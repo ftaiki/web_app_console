@@ -120,9 +120,8 @@ def detection():
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     conn = sqlite3.connect('log.db', isolation_level=None)
     data = [event, alert, now]
-    curs = conn.execute(
-        "INSERT INTO logs(event, alert, time) values(?, ?, ?)",data
-    )
+    c = conn.cursor()
+    c.execute("INSERT INTO logs(event, alert, time) values(?, ?, ?)",data)
     conn.commit()
     conn.close()
     return render_template("detection.html")
