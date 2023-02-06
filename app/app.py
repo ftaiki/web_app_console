@@ -126,7 +126,7 @@ def detection():
     )
     conn.commit()
     conn.close()
-    return redirect("/index")
+    return render_template("index.html")
 
 @app.route("/detection", methods=['GET'])
 def see_detection():
