@@ -21,11 +21,11 @@ curs = conn.cursor()
 #)
 
 
-#curs.execute(
-#    'SELECT * FROM count_logs'
-#)
-#db = curs.fetchall()
-#print(db)
+curs.execute(
+    'SELECT * FROM logs'
+)
+db = curs.fetchall()
+print(db)
 conn.commit()
 
 curs.close()
