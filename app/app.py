@@ -123,7 +123,7 @@ def detection():
     curs = conn.execute(
         "INSERT INTO logs(event, alert, time) values(?, ?, ?)",data
     )
-    curs.commit()
+    conn.commit()
     conn.close()
     return render_template("detection.html")
 
