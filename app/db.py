@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('../log.db')
+conn = sqlite3.connect('log.db')
 
 curs = conn.cursor()
 

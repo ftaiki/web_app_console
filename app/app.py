@@ -18,7 +18,7 @@ def home():
 
 @app.route("/index", methods=['GET'])
 def index_get():
-    conn = sqlite3.connect('../log.db')
+    conn = sqlite3.connect('log.db')
     sql = "SELECT * FROM logs"
     
     #logデータの取得
@@ -118,7 +118,7 @@ def detection():
     
     #データベースへの挿入
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    conn = sqlite3.connect('../log.db')
+    conn = sqlite3.connect('log.db')
     curs = conn.cursor()
     data = [event, alert, now]
     curs.execute(
