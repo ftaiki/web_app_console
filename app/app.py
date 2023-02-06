@@ -89,7 +89,7 @@ def index_get():
 @app.route("/detection", methods=['POST'])
 def detection():
     #POSTでアクセスログを貰う
-    loginfo = [ request.remote_addr,
+    loginfo = [ request.form['ip_address'],
                 request.method,
                 request.url,
                 request.path
