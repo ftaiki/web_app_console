@@ -121,8 +121,14 @@ def detection():
     conn = sqlite3.connect('log.db', isolation_level=None)
     data = [event, alert, now]
     c = conn.cursor()
-    c.execute("INSERT INTO logs(event, alert, time) values(?, ?, ?)",data)
+    c.execute("INSERT INTO logs(event, alert, time) values(?, ?, ?)",data)    
     conn.commit()
+    
+    #abnormalならアノマリ検知ログにあげる
+    if alert == 'abnormal':
+        c.execute("INSERT INTO count_logs(alert, time) values(?, ?)",data)   
+        conn.commit()
+        
     conn.close()
     return render_template("detection.html")
 
