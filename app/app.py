@@ -140,6 +140,9 @@ def see_detection():
 
 #モデルでペイロードから攻撃検知して1か0を返す
 def predict(payload):
+    result = 0
+    if payload =='':
+        return result
     df = pd.read_csv('app/dataset/payload_full.csv')
     df1 = pd.read_csv('app/dataset/payload_train.csv')
     train_rows = ((df.attack_type=='norm') | (df.attack_type=='sqli'))
@@ -178,7 +181,7 @@ def predict(payload):
     model = joblib.load('app/model/model.pickle')
     pred = model.predict(validation_data)
     #結果を1か0で返す
-    result = 0
+    
     if pred >=0.95:
         result = 1
     return result
