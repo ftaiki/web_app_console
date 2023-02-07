@@ -126,7 +126,8 @@ def detection():
     
     #abnormalならアノマリ検知ログにあげる
     if alert == 'abnormal':
-        c.execute("INSERT INTO count_logs(alert, time) values(?, ?)",data)   
+        data1 = [data[1],data[2]]
+        c.execute("INSERT INTO count_logs(alert, time) values(?, ?)",data1)   
         conn.commit()
         
     conn.close()
