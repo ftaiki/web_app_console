@@ -111,10 +111,13 @@ def detection():
     if event2 :
         result2 = predict(event2)
     
+    flag = False
     if result == 1:
         alert = 'abnormal'
+        flag = True
     if result2 == 1:
         alert = 'abnormal'
+        flag = True
     
     #データベースへの挿入
     now = datetime.now() + timedelta(hours=9)
@@ -127,7 +130,7 @@ def detection():
     conn.commit()
     
     #abnormalならアノマリ検知ログにあげる
-    if alert == 'abnormal':
+    if flag:
         data1 = [data[1],data[2]]
         c.execute("INSERT INTO count_logs(alert, time) values(?, ?)",data1)   
         conn.commit()
