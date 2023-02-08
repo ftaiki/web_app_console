@@ -34,7 +34,6 @@ def index_get():
         sql
     ).fetchall()
     db_today_anom = curs[0]
-    
     #昨日の攻撃検知数
     sql = "SELECT COUNT(*) FROM count_logs WHERE date(time) = date('now', '+9 hours', '-1 day')"
     curs = conn.execute(

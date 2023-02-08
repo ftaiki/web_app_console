@@ -16,13 +16,13 @@ curs = conn.cursor()
 
 #検出したログ件数.主キーはアラートのレベル
 #alertと日時だけ入れる
-curs.execute(
-    "CREATE TABLE count_logs(id INTEGER PRIMARY KEY AUTOINCREMENT, alert String, time TIMESTAMP)"
-)
+#curs.execute(
+#    "CREATE TABLE count_logs(id INTEGER PRIMARY KEY AUTOINCREMENT, alert String, time TIMESTAMP)"
+#)
 
 
 curs.execute(
-    'SELECT * FROM count_logs'
+    'SELECT * FROM logs'
 )
 db = curs.fetchall()
 print(db)
