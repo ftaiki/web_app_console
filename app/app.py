@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 import joblib
+import requests
 
 #conn = sqlite3.connect('log.db')
 app = Flask(__name__)
@@ -130,7 +131,12 @@ def detection():
         data1 = [data[1],data[2]]
         c.execute("INSERT INTO count_logs(alert, time) values(?, ?)",data1)   
         conn.commit()
-        
+        token = 'Q44MBiKP13xaht21vWmvUpzwH7B0uahqIGzXesp3HQu' #APIのトークン
+        url = 'https://notify-api.line.me/api/notify' #APIのエンドポイント
+        headers = {'Authorization': 'Bearer ' + token}
+        payload = {'message': 'アラートを検知しました。\n検知したアプリ：\nhttps://webappsqli.herokuapp.com\nダッシュボード：\nhttps://taikifdashboard.herokuapp.com'} #LINEに送るメッセージ
+        requests.post(url, headers=headers, data=payload)
+
     conn.close()
     return render_template("detection.html")
 
