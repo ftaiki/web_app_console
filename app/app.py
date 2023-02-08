@@ -90,9 +90,8 @@ def index_get():
 def detection():
     #POSTでアクセスログを貰う
     loginfo = [ request.form['ip_address'],
+                request.form['path'],
                 request.method,
-                request.url,
-                request.path
             ]
     event1 = request.form['event1']
     event2 = request.form['event2']
