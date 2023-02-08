@@ -117,7 +117,7 @@ def detection():
         alert = 'abnormal'
     
     #データベースへの挿入
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S") + timedelta(hours=9)
     conn = sqlite3.connect('log.db', isolation_level=None)
     data = [event, alert, now]
     c = conn.cursor()
