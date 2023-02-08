@@ -127,10 +127,12 @@ def detection():
     c = conn.cursor()
     c.execute("INSERT INTO logs(event, alert, time) values(?, ?, ?)",data)    
     conn.commit()
-    
+    conn.close()
     #abnormalならアノマリ検知ログにあげる
-    if flag:
+    if result == 1 or result2 == 1 or flag :
         data1 = [data[1],data[2]]
+        conn = sqlite3.connect('log.db', isolation_level=None)
+        c = conn.cursor()
         c.execute("INSERT INTO count_logs(alert, time) values(?, ?)",data1)   
         conn.commit()
         token = 'Q44MBiKP13xaht21vWmvUpzwH7B0uahqIGzXesp3HQu' #APIのトークン
@@ -138,9 +140,8 @@ def detection():
         headers = {'Authorization': 'Bearer ' + token}
         payload = {'message': 'アラートを検知しました。\n検知したアプリ：\nhttps://webappsqli.herokuapp.com\nダッシュボード：\nhttps://taikifdashboard.herokuapp.com'} #LINEに送るメッセージ
         requests.post(url, headers=headers, data=payload)
-
     conn.close()
-    return render_template("detection.html")
+    return redirect("/index")
 
 @app.route("/detection", methods=['GET'])
 def see_detection():
