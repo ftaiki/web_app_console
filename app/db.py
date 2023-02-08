@@ -9,15 +9,15 @@ curs = conn.cursor()
 #)
 
 #logs(id, event, alert, created TIMESTAMP DEFAULT(datetime(CURRENT_TIMESTAMP, 'localtime')))
-#curs.execute(
-#    "CREATE TABLE logs(id INTEGER PRIMARY KEY AUTOINCREMENT, event String, alert String, time TIMESTAMP DEFAULT (datetime(CURRENT_TIMESTAMP,'localtime')))"
-#)
+curs.execute(
+    "CREATE TABLE logs(id INTEGER PRIMARY KEY AUTOINCREMENT, event String, alert String, time TIMESTAMP DEFAULT (datetime(CURRENT_TIMESTAMP,'localtime')))"
+)
 
 
 #検出したログ件数.主キーはアラートのレベル
 #alertと日時だけ入れる
 curs.execute(
-    "CREATE TABLE count_logs(id INTEGER PRIMARY KEY AUTOINCREMENT, alert String, time TIMESTAMP)"
+    "CREATE TABLE count_logs(id INTEGER PRIMARY KEY AUTOINCREMENT, alert String, time TIMESTAMP DEFAULT (datetime(CURRENT_TIMESTAMP,'localtime')))"
 )
 
 
