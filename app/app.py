@@ -29,7 +29,7 @@ def index_get():
     db = curs
     
     #今日の攻撃検知数
-    sql = "SELECT COUNT(*) FROM count_logs WHERE date(time) = date('now', '+9 hours')"
+    sql = "SELECT COUNT(*) FROM count_logs"
     curs = conn.execute(
         sql
     ).fetchall()
